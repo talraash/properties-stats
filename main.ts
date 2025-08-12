@@ -322,11 +322,14 @@ class StatsModal extends Modal {
         menu.showAtPosition({ x: e.pageX, y: e.pageY });
     }
 
-    private openFile(file: TFile, newPane = false) {
-        const leaf = newPane ? 
-            this.app.workspace.splitActiveLeaf() : 
-            this.app.workspace.getLeaf();
-        leaf.openFile(file);
-        this.close();
-    }
+        private openFile(file: TFile, newPane = false) {
+            if (newPane) {
+                const leaf = this.app.workspace.getLeaf('split', 'vertical');
+                leaf.openFile(file);
+            } else {
+                const leaf = this.app.workspace.getLeaf(false);
+                leaf.openFile(file);
+            }
+            this.close();
+        }
 }
