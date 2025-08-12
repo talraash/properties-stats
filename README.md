@@ -6,4 +6,7 @@ Features:
 
 - Search key
 
+
 - Open notes directly or reveal in file explorer
+
+Download the archive with the latest release, extract the properties-stat folder into /vault/.obsidian/plugins. Go to Obsidian → Settings → Community plugins and enable the Properties Statistics plugin.
