@@ -17,7 +17,7 @@ const DEFAULT_SETTINGS: PluginSettings = {
 };
 
 export default class EnhancedFrontmatterStatsPlugin extends Plugin {
-    settings!: PluginSettings; // Исправлено: добавлено !
+    settings!: PluginSettings;
     private cache: FrontmatterField[] = [];
     private lastUpdate = 0;
 
@@ -130,17 +130,16 @@ class StatsModal extends Modal {
         this.contentEl.empty();
         this.contentEl.addClass('frontmatter-stats');
         
-        // Заголовок
+        
         this.contentEl.createEl('h2', { text: 'Frontmatter Statistics' });
         
-        // Поисковая строка
+        // Search input
         const searchContainer = this.contentEl.createDiv({ cls: 'search-container' });
         searchContainer.createEl('label', { 
             text: 'Search:',
             attr: { for: 'frontmatter-search' }
         });
         
-        // Исправлено: заменен id на attr
         this.searchInputEl = searchContainer.createEl('input', {
             type: 'text',
             attr: { 
@@ -212,12 +211,10 @@ class StatsModal extends Modal {
         this.contentEl.empty();
         this.contentEl.addClass('frontmatter-stats');
         
-        // Заголовок
         this.contentEl.createEl('h2', { 
             text: `Notes with "${this.currentField.name}"` 
         });
         
-        // Кнопка возврата
         const backButton = new ButtonComponent(this.contentEl)
             .setButtonText('← Back to All Parameters')
             .onClick(() => {
@@ -228,7 +225,7 @@ class StatsModal extends Modal {
         
         backButton.buttonEl.style.marginBottom = '15px';
         
-        // Список файлов
+        // File list
         const start = this.currentPage * this.plugin.settings.pageSize;
         const end = start + this.plugin.settings.pageSize;
         const paginatedFiles = this.currentField.files.slice(start, end);
@@ -243,20 +240,20 @@ class StatsModal extends Modal {
                 cls: 'internal-link'
             });
             
-            // Клик для открытия файла
+            // Mouse click to open file
             link.onclick = (e) => {
                 e.preventDefault();
                 this.openFile(file);
             };
             
-            // Контекстное меню
+            // Context menu for file actions
             link.oncontextmenu = (e) => {
                 e.preventDefault();
                 this.showFileContextMenu(file, e);
             };
         }
         
-        // Пагинация
+        // Pagination functionality
         if (this.currentField.files.length > this.plugin.settings.pageSize) {
             const pagination = this.contentEl.createDiv({ cls: 'pagination' });
             
@@ -285,7 +282,6 @@ class StatsModal extends Modal {
     }
 
     private showFileContextMenu(file: TFile, e: MouseEvent) {
-        // Исправлено: убран аргумент this.app
         const menu = new Menu(); 
         
         menu.addItem(item => item
@@ -307,7 +303,6 @@ class StatsModal extends Modal {
             .setTitle("Reveal in file explorer")
             .setIcon('folder')
             .onClick(() => {
-                // Проверяем, находимся ли мы в десктопном приложении
                 if (typeof window.require === 'function') {
                     try {
                         const { shell } = window.require('electron');
