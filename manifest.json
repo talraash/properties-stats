@@ -1,0 +1,10 @@
+{
+    "id": "properties-stats",
+    "name": "Properties Statistics",
+    "version": "1.0.0",
+    "minAppVersion": "0.15.0",
+    "description": "Shows statistics of frontmatter keys used in vault",
+    "author": "Vitalij Suslov",
+    "authorUrl": "",
+    "isDesktopOnly": true
+}

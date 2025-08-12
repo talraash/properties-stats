@@ -1,0 +1,14 @@
+{
+  "name": "properties-stats",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc -p ."
+  },
+  "dependencies": {
+    "obsidian": "latest"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.4",
+    "@types/node": "^20.11.5"
+  }
+}
